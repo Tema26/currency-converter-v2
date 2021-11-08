@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 <template>
     <div>
         <h1>Page Valute List</h1>
         <div class="container">
             <div class="container-one">
-            <select name="first-currency" id="first-currency" v-model="currency_one">
+            <select name="currentValuteOfInputOne" id="currentValuteOfInputOne" v-model="currentValuteOfInputOne">
                 <option v-for="(currency, index) in listOfCurrencies" :key="currency + index + 1">{{ currency.CharCode }}</option>
             </select>
             <input
@@ -16,11 +17,10 @@
             <div class="container-two">
             <button @click="switchValues">Switch</button>
             <h4> {{ viewDifferenceCurrency }}</h4>
-            <h4 id="baseValue">1 {{ currency_one }} = {{ rate.Value }} {{currency_two}}</h4>
             </div>
             <div class="container-three">
-            <select name="second-currence" id="second-currence" v-model="currency_two">
-                <!-- <option v-for="(currency, index) in listOfCurrencies" :key="currency + index + 1">{{ currency[0] }}</option> -->
+            <select name="currentValuteOfInputTwo" id="currentValuteOfInputTwo" v-model="currentValuteOfInputTwo">
+               
                 <option v-for="currency in listOfCurrencies" :key="currency">{{ currency.CharCode }}</option>
             </select>
             <input type="number" value="differenceBetweenCurrencies" id="amount-two" placeholder="0"/>
@@ -39,3 +39,18 @@ export default {
 
 }
 </script>
+
+/<template>
+  
+</template>
+
+<script>
+export default {
+
+}
+
+</script>
+
+<style>
+
+</style>
