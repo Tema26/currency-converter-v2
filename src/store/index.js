@@ -6,19 +6,19 @@ export default createStore({
   },
   mutations: {
     setListValute(payload) {
-      state.listValute.push(payload)
-    }
+      state.listValute.push(payload);
+    },
   },
   actions: {
     getValute() {
       fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           const valutes = data.Valute;
-          valutes.forEach(item => this.setListValute(item));
-        })
-    }
+          valutes.forEach((item) => this.setListValute(item));
+          console.log(setListValute);
+        });
+    },
   },
   modules: {},
-
 });

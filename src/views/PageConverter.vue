@@ -31,7 +31,6 @@
         </select>
         <input
           type="number"
-          value="differenceBetweenValutes"
           v-model.number="numOfValuteTwo"
         />
       </div>
