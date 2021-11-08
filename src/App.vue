@@ -1,11 +1,20 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <page-converter></page-converter>
+  <page-valute-list></page-valute-list>
 </template>
 
+<script>
+  import PageConverter from './views/PageConverter.vue';
+  import PageValuteList from './views/PageValuteList.vue';
+  
+  export default {
+    components: {
+      PageConverter,
+        PageValuteList,
+    },
+  };
+</script>
+  
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -28,3 +37,4 @@
   color: #42b983;
 }
 </style>
+
