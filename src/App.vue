@@ -6,6 +6,7 @@
 <script>
   import PageConverter from './views/PageConverter.vue';
   import PageValuteList from './views/PageValuteList.vue';
+
   
   export default {
     components: {

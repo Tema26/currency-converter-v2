@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 <template>
     <div>
         <h1>Page Valute List</h1>
@@ -10,8 +9,8 @@
             <input
                 type="number"
                 name="input-one"
-                id="input-one"
-                v-model.number="amountOne"
+                id="currentValuteOfInputOne"
+                v-model.number="currentValuteOfInputOne"
             >
             </div>
             <div class="container-two">
@@ -20,10 +19,13 @@
             </div>
             <div class="container-three">
             <select name="currentValuteOfInputTwo" id="currentValuteOfInputTwo" v-model="currentValuteOfInputTwo">
-               
                 <option v-for="currency in listOfCurrencies" :key="currency">{{ currency.CharCode }}</option>
             </select>
-            <input type="number" value="differenceBetweenCurrencies" id="amount-two" placeholder="0"/>
+            <input
+             type="number"
+              value="differenceBetweenCurrencies"
+               id="currentValuteOfInputTwo"
+                placeholder="0"/>
             </div>
 
             <div class="container-four">
@@ -38,17 +40,6 @@
 export default {
 
 }
-</script>
-
-/<template>
-  
-</template>
-
-<script>
-export default {
-
-}
-
 </script>
 
 <style>
