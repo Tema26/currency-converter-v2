@@ -49,12 +49,16 @@ export default {
       currentValuteOfInputTwo: null, // Текущее выбранное значение второй валюты
       numOfValuteOne: 0, // Кол-во единиц в первой валюте
       numOfValuteTwo: 0, // Кол-во единиц во второй валюте
+      
     };
   },
   methods: {
     ...mapActions(["getValute"]),
     ...mapState(["listValute"]),
     swappingValute() {},
+    currentValuteOne(){
+      console.log(this.currentValuteOfInputOne) 
+    }
   },
   computed: {
     differenceBetweenValutes() {
@@ -63,6 +67,7 @@ export default {
   },
   created() {
     this.getValute();
+    
   },
 };
 </script>

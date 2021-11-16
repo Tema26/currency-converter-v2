@@ -5,8 +5,8 @@ export default createStore({
     listValute: [],
   },
   mutations: {
-    setListValute(payload, state) {
-    state.listValute.push(payload, state);
+    setListValute(state, payload) {
+    state.listValute.push(state, payload);
     },
   },
   actions: {
@@ -14,11 +14,16 @@ export default createStore({
       fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
         .then((response) => response.json())
         .then((data) => {
-          const valutes = data.Valute.CharCode;
-          context.commit('setListValute', item);
-          valutes.forEach((context) => setListValute(context));
+          const valutes = data.Valute;  
+          valutes.forEach((item) => this.setListValute(item));
+          // context.commit('setListValute', context);
+          console.log(valutes)
+
         });
     },
+    setListValute({commit}) {
+      commit('setListValute')
+    } 
   },
   modules: {},
 });
