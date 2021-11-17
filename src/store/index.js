@@ -6,24 +6,21 @@ export default createStore({
   },
   mutations: {
     setListValute(state, payload) {
-    state.listValute.push(state, payload);
+    state.listValute.push(payload);
     },
   },
   actions: {
-    getValute() {
+    getValute({commit}) {
       fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
         .then((response) => response.json())
         .then((data) => {
-          const valutes = data.Valute;  
-          valutes.forEach((item) => this.setListValute(item));
-          // context.commit('setListValute', context);
-          console.log(valutes)
+          // const valutes = data.Valute;  
+          data.Valute.forEach((item) => commit('setListValute', item));
+          console.log(data)
 
         });
     },
-    setListValute({commit}) {
-      commit('setListValute')
-    } 
+    
   },
   modules: {},
 });

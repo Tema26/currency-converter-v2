@@ -39,14 +39,14 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState} from "vuex";
 
 
 export default {
   data() {
     return {
-      currentValuteOfInputOne: null, // Текущее выбранное значение первой валюты
-      currentValuteOfInputTwo: null, // Текущее выбранное значение второй валюты
+      currentValuteOfInputOne: '', // Текущее выбранное значение первой валюты
+      currentValuteOfInputTwo: '', // Текущее выбранное значение второй валюты
       numOfValuteOne: 0, // Кол-во единиц в первой валюте
       numOfValuteTwo: 0, // Кол-во единиц во второй валюте
       
@@ -54,19 +54,19 @@ export default {
   },
   methods: {
     ...mapActions(["getValute"]),
-    ...mapState(["listValute"]),
+    
     swappingValute() {},
-    currentValuteOne(){
-      console.log(this.currentValuteOfInputOne) 
-    }
   },
   computed: {
+    ...mapState(["listValute"]),
     differenceBetweenValutes() {
       return 1;
     },
   },
   created() {
     this.getValute();
+    this.currentValuteOfInputOne = listValute[0];
+    this.currentValuteOfInputTwo = listValute[1];
     
   },
 };
