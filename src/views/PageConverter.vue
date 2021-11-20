@@ -29,9 +29,8 @@
             {{ itemValute.CharCode }}
           </option>
         </select>
-        <input v-model="numOfValuteTwo"
+        <input v-model="numOfValuteTwo.Value"
         type="number"
-        value.number="differenceBetweenCurrencies"
         
        
          />
@@ -68,6 +67,7 @@ export default {
     differenceBetweenCurrencies() {
       this.numOfValuteOne = this.listValute[0].Value;
       this.numOfValuteTwo = this.listValute[1].Value;
+      return this.numOfValuteTwo * this.numOfValuteOne;
     },
   },
   created() {
