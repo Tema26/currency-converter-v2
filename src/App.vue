@@ -1,6 +1,6 @@
 <template>
   <page-converter></page-converter>
-  <page-valute-list></page-valute-list>
+
 </template>
 
 <script>

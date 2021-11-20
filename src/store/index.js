@@ -14,10 +14,9 @@ export default createStore({
       fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
         .then((response) => response.json())
         .then((data) => {
-          // const valutes = data.Valute;  
-          data.Valute.forEach((item) => commit('setListValute', item));
-          console.log(data)
-
+          const valutes = Object.values(data.Valute);
+          valutes.forEach((item) => commit('setListValute', item));
+          // console.log(this.state.listValute);
         });
     },
     

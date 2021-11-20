@@ -17,7 +17,7 @@
 
       <div>
         <button @click="swappingValute">Поменять местами валюты</button>
-        <span> {{ differenceBetweenValutes }} </span>
+        <span> {{  }} </span>
       </div>
 
       <div>
@@ -29,10 +29,12 @@
             {{ itemValute.CharCode }}
           </option>
         </select>
-        <input
-          type="number"
-          v-model.number="numOfValuteTwo"
-        />
+        <input v-model="numOfValuteTwo"
+        type="number"
+        value.number="differenceBetweenCurrencies"
+        
+       
+         />
       </div>
     </div>
   </div>
@@ -47,26 +49,31 @@ export default {
     return {
       currentValuteOfInputOne: '', // Текущее выбранное значение первой валюты
       currentValuteOfInputTwo: '', // Текущее выбранное значение второй валюты
-      numOfValuteOne: 0, // Кол-во единиц в первой валюте
+      numOfValuteOne: 1, // Кол-во единиц в первой валюте
       numOfValuteTwo: 0, // Кол-во единиц во второй валюте
       
     };
   },
   methods: {
     ...mapActions(["getValute"]),
+    swappingValute() {
+      const temporaryValue = this.currentValuteOfInputOne;
+      this.currentValuteOfInputOne = this.currentValuteOfInputTwo;
+      this.currentValuteOfInputTwo = temporaryValue;
+    },
     
-    swappingValute() {},
   },
   computed: {
     ...mapState(["listValute"]),
-    differenceBetweenValutes() {
-      return 1;
+    differenceBetweenCurrencies() {
+      this.numOfValuteOne = this.listValute[0].Value;
+      this.numOfValuteTwo = this.listValute[1].Value;
     },
   },
   created() {
     this.getValute();
-    this.currentValuteOfInputOne = listValute[0];
-    this.currentValuteOfInputTwo = listValute[1];
+
+
     
   },
 };
