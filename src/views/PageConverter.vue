@@ -29,10 +29,8 @@
             {{ itemValute.CharCode }}
           </option>
         </select>
-        <input v-model="numOfValuteTwo.Value"
+        <input v-model.number="numOfValuteTwo"
         type="number"
-        
-       
          />
       </div>
     </div>
@@ -55,26 +53,28 @@ export default {
   },
   methods: {
     ...mapActions(["getValute"]),
+    
     swappingValute() {
       const temporaryValue = this.currentValuteOfInputOne;
       this.currentValuteOfInputOne = this.currentValuteOfInputTwo;
       this.currentValuteOfInputTwo = temporaryValue;
     },
+    differenceBetweenCurrencies() {
+    // this.numOfValuteOne = this.listValute[0].Value;
+    // this.numOfValuteTwo = this.listValute[1].Value;
+    console.log(this.listValute);
+    this.numOfValuteTwo = this.numOfValuteTwo - this.numOfValuteOne
+    },
     
   },
   computed: {
     ...mapState(["listValute"]),
-    differenceBetweenCurrencies() {
-      this.numOfValuteOne = this.listValute[0].Value;
-      this.numOfValuteTwo = this.listValute[1].Value;
-      return this.numOfValuteTwo * this.numOfValuteOne;
-    },
   },
   created() {
     this.getValute();
-
-
-    
   },
+  beforeMount() {
+    differenceBetweenCurrencies();
+  }
 };
 </script>
