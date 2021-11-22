@@ -1,7 +1,7 @@
 <template>
   <page-converter v-if="!isShowLoader"></page-converter>
-  <pulse-loader v-else="isShowLoader" :loading="loading" :color="color" :size="size"></pulse-loader>  
-
+  <!-- <pulse-loader v-else :loading="loading" :color="color" :size="size"></pulse-loader>   -->
+  <div v-else> Loading...</div>
 </template>
 
 <script>
@@ -11,26 +11,30 @@
   import { mapActions, mapState} from "vuex";
   
   export default {
-     data() {
+    data() {
     return {
       isShowLoader: false,
-      methods: {
-      ...mapActions(["getValute"]),
-  }
-    }
+    };
   },
+  methods: {
+      ...mapActions(["getValute"]),
+     },
   computed: {
     ...mapState(["listValute"]),
   },
   watch: {
-      listValute(newValue, oldValue) {
+      listValute(oldValue, newValue) {
         if (newValue.length > 0) {
-          isShowLoader
+          this.isShowLoader = false
         } else {
-          !isShowLoader
+          this.isShowLoader = true
         }
       }
   },
+  created() {
+    this.getValute();
+  },
+  
     components: {
       PageConverter,
       PageValuteList,
