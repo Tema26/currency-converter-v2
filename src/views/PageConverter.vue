@@ -74,7 +74,7 @@ export default {
     this.getValute();
   },
   beforeMount() {
-    differenceBetweenCurrencies();
+    // differenceBetweenCurrencies();
   }
 };
 </script>

@@ -1,21 +1,43 @@
 <template>
-  <page-converter v-if="listValute.length > 0"></page-converter>
-  <pulse-loader v-else="listValute.length == 0" :loading="loading" :color="color" :size="size"></pulse-loader>  
+  <page-converter v-if="!isShowLoader"></page-converter>
+  <pulse-loader v-else="isShowLoader" :loading="loading" :color="color" :size="size"></pulse-loader>  
 
 </template>
 
 <script>
   import PageConverter from './views/PageConverter.vue';
   import PageValuteList from './views/PageValuteList.vue';
-  import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+  import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+  import { mapActions, mapState} from "vuex";
   
   export default {
+     data() {
+    return {
+      isShowLoader: false,
+      methods: {
+      ...mapActions(["getValute"]),
+  }
+    }
+  },
+  computed: {
+    ...mapState(["listValute"]),
+  },
+  watch: {
+      listValute(newValue, oldValue) {
+        if (newValue.length > 0) {
+          isShowLoader
+        } else {
+          !isShowLoader
+        }
+      }
+  },
     components: {
       PageConverter,
       PageValuteList,
       PulseLoader
     },
   };
+ 
 </script>
   
 <style>
