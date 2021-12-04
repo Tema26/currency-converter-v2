@@ -1,47 +1,47 @@
 <template>
   <page-converter v-if="!isShowLoader"></page-converter>
-  <!-- <pulse-loader v-else :loading="loading" :color="color" :size="size"></pulse-loader>   -->
   <div v-else> Loading...</div>
+  <page-valute-list></page-valute-list>
 </template>
 
 <script>
   import PageConverter from './views/PageConverter.vue';
   import PageValuteList from './views/PageValuteList.vue';
-  import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
-  import { mapActions, mapState} from "vuex";
+  import { mapActions, mapGetters } from "vuex";
+  
   
   export default {
-    data() {
+  data() {
     return {
       isShowLoader: false,
     };
   },
   methods: {
       ...mapActions(["getValute"]),
-     },
+  },
   computed: {
-    ...mapState(["listValute"]),
+    ...mapGetters(["getListValuteLength"]),
   },
   watch: {
-      listValute(oldValue, newValue) {
-        if (newValue.length > 0) {
-          this.isShowLoader = false
+    getListValuteLength: {
+      immediate: true,
+      handler(newValue, _) {
+        if (newValue > 0) {
+          this.isShowLoader = false;
         } else {
-          this.isShowLoader = true
+          this.isShowLoader = true;
         }
-      }
+      },
+    }
   },
-  created() {
-    this.getValute();
+  async created() {
+    await this.getValute();
   },
-  
-    components: {
-      PageConverter,
-      PageValuteList,
-      PulseLoader
-    },
-  };
- 
+  components: {
+    PageConverter,
+    PageValuteList,
+  },
+};
 </script>
   
 <style>

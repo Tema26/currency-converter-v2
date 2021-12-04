@@ -10,16 +10,17 @@ export default createStore({
     },
   },
   actions: {
-    getValute({commit}) {
-      fetch(`https://www.cbr-xml-daily.ru/daily_json.js`)
-        .then((response) => response.json())
-        .then((data) => {
-          const valutes = Object.values(data.Valute);
-          valutes.forEach((item) => commit('setListValute', item));
-          // console.log(this.state.listValute);
-        });
+    async getValute( { commit } ) {
+      const response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+      const data = await response.json();
+
+      const valutes = Object.values(data.Valute);
+      valutes.forEach((item) => commit('setListValute', item));
     },
-    
   },
-  modules: {},
+  getters: {
+    getListValuteLength: state => {
+      return state.listValute.length;
+    }
+  }
 });

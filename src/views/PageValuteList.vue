@@ -37,9 +37,14 @@
 </template>
 
 <script>
-
+import { mapActions, mapState} from "vuex";
 export default {
-
+methods: {
+    ...mapActions(["getValute"]),
+},
+computed: {
+    ...mapState(["listValute"]),
+  },
 }
 </script>
 
