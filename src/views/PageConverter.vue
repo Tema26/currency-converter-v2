@@ -17,10 +17,10 @@
 
       <div>
         <button @click="swappingValute">Поменять местами валюты</button>
-        <span> {{  }} </span>
+        Разница валют: <b><span> {{ differenceBetweenCurrencies }} </span> </b> 
       </div>
-
-      <div>
+      
+        
         <select v-model="currentValuteOfInputTwo">
           <option
             v-for="(itemValute, index) in listValute"
@@ -34,7 +34,6 @@
          />
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -47,8 +46,7 @@ export default {
       currentValuteOfInputOne: '', // Текущее выбранное значение первой валюты
       currentValuteOfInputTwo: '', // Текущее выбранное значение второй валюты
       numOfValuteOne: 1, // Кол-во единиц в первой валюте
-      numOfValuteTwo: 0, // Кол-во единиц во второй валюте
-      
+      numOfValuteTwo: 0, // Кол-во единиц во второй валюте 
     };
   },
   methods: {
@@ -59,16 +57,15 @@ export default {
       this.currentValuteOfInputOne = this.currentValuteOfInputTwo;
       this.currentValuteOfInputTwo = temporaryValue;
     },
-    differenceBetweenCurrencies() {
-    // this.numOfValuteOne = this.listValute[0].Value;
-    // this.numOfValuteTwo = this.listValute[1].Value;
-    console.log(this.listValute);
-    this.numOfValuteTwo = this.numOfValuteTwo - this.numOfValuteOne
-    },
-    
   },
   computed: {
     ...mapState(["listValute"]),
+    differenceBetweenCurrencies() {
+      const first_currency = this.numOfValuteOne * this.listValute[0].Value;
+      const second_currence = this.numOfValuteTwo * this.listValute[1].Value;
+      const sum = second_currence - first_currency
+      return sum.toFixed(2);
+    }
   },
   created() {
     this.getValute();
